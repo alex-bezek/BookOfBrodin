@@ -62,14 +62,18 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-CMD
-    yum -y update
+    sudo yum -y update
     sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
-    yum -y install epel-release
-    yum -y install nodejs npm git
+    sudo yum -y install epel-release
+    sudo yum -y install nodejs npm git
+    #git clone https://github.com/alex-bezek/BookOfBrodin.git
     # Maybe need install express -g
-    
-    sudo npm install --no-bin-links
+    cd ..
+    cd ..
+    cd vagrant/
+    #sudo npm install --no-bin-links
 
+    npm start
 
   CMD
 
