@@ -1,6 +1,8 @@
 # Book Of Brodin
 Quotes from the book of brodin
 
+http://bookofbrodin.wikia.com/wiki/Book_of_Brodin_Wiki
+
 ### Available API's
 There are the available api's that are currently implemented. 
 
