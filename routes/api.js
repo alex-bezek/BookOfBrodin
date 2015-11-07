@@ -11,7 +11,9 @@ router.get('/passage', function(req, res){
 
 	var results = brodin_data.quotes;
 	if(maxLength){
-		result = results.filter(function(passage){ return passage.quote.length < maxLength});   	
+		result = results.filter(function(passage){ 
+			return passage.quote.length < maxLength;
+		});   	
 	} 
 	res.json(results.random());   
 });
@@ -21,13 +23,19 @@ router.get('/passage/search/:text/', function(req, res){
 	var maxLength = req.query.maxLength;
 	var book = req.query.book;
 
-	var results = brodin_data.quotes.filter(function(passage){ return passage.quote.indexOf(searchText) !== -1; });
+	var results = brodin_data.quotes.filter(function(passage){ 
+		return passage.quote.indexOf(searchText) !== -1; 
+	});
 
 	if(book){
-		results = results.filter(function(passage){ return passage.book.indexOf(book) !== -1; });
+		results = results.filter(function(passage){ 
+			return passage.book.indexOf(book) !== -1; 
+		});
 	}
 	if(maxLength){
-		results = results.filter(function(passage){ return passage.quote.length < maxLength});   	
+		results = results.filter(function(passage){ 
+			return passage.quote.length < maxLength;
+		});   	
 	} 
 	allowMultiple(req, res, results); 
 });
@@ -39,15 +47,32 @@ router.get('/deity', function(req, res){
 
 router.get('/deity/search/:name', function(req, res){
 	var name = req.params.name;
-	allowMultiple(req, res, brodin_data.deities.filter(function(deity){ deity.name.indexOf(name) !== -1; }));   
+	var results = brodin_data.deities.filter(function(deity){ 
+		deity.name.indexOf(name) !== -1; 
+	});
+	allowMultiple(req, res, results);   
 });
 
 router.get('/book', function(req, res){
-	res.json(brodin_data.books.random());   
+	var results = brodin_data.quotes.map(function(result){ 
+		return { 
+			'title' : result.book 
+		}; 
+	});
+	allowMultiple(req, res, results);   
 });
 
 router.get('/book/search/:title', function(req, res){
-	allowMultiple(req, res, brodin_data.books.filter(function(deity){ deity.title.indexOf(name) !== -1; }));   
+	var title = req.params.title;
+	var results = brodin_data.quotes.filter(function(passage){ 
+		passage.book.indexOf(title) !== -1; 
+	})
+	.map(function(result){ 
+		return { 
+			'title' : result.book 
+		}; 
+	});
+	allowMultiple(req, res, results);   
 });
 
 
