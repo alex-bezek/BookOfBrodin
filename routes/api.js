@@ -3,7 +3,7 @@ var router = express.Router();
 var brodin_data = require('../raw_book/brodin_data.json');
 
 router.get('/', function(req, res){
-	res.json({ message: 'hooray! Welcome to our Book of Brodin api!' });   
+	res.json({ message: 'Hooray! Welcome to our Book of Brodin api!' });   
 });
 
 router.get('/passage', function(req, res){
@@ -11,25 +11,25 @@ router.get('/passage', function(req, res){
 
 	var results = brodin_data.quotes;
 	if(maxLength){
-		result = results.filter(function(passage){ 
+		results = results.filter(function(passage){ 
 			return passage.quote.length < maxLength;
 		});   	
 	} 
 	res.json(results.random());   
 });
 
-router.get('/passage/search/:text/', function(req, res){
+router.get('/passage/search/:text', function(req, res){
 	var searchText = req.params.text;
 	var maxLength = req.query.maxLength;
 	var book = req.query.book;
 
 	var results = brodin_data.quotes.filter(function(passage){ 
-		return passage.quote.indexOf(searchText) !== -1; 
+		return (new RegExp(searchText, 'i')).test(passage.quote); 
 	});
 
 	if(book){
 		results = results.filter(function(passage){ 
-			return passage.book.indexOf(book) !== -1; 
+			return (new RegExp(book, 'i')).test(passage.book);
 		});
 	}
 	if(maxLength){
@@ -48,7 +48,7 @@ router.get('/deity', function(req, res){
 router.get('/deity/search/:name', function(req, res){
 	var name = req.params.name;
 	var results = brodin_data.deities.filter(function(deity){ 
-		deity.name.indexOf(name) !== -1; 
+		return (new RegExp(name, 'i')).test(deity.name);
 	});
 	allowMultiple(req, res, results);   
 });
@@ -59,13 +59,13 @@ router.get('/book', function(req, res){
 			'title' : result.book 
 		}; 
 	});
-	allowMultiple(req, res, results);   
+	res.json(results.random());  
 });
 
 router.get('/book/search/:title', function(req, res){
 	var title = req.params.title;
 	var results = brodin_data.quotes.filter(function(passage){ 
-		passage.book.indexOf(title) !== -1; 
+		return (new RegExp(title, 'i')).test(passage.book);
 	})
 	.map(function(result){ 
 		return { 
@@ -77,7 +77,7 @@ router.get('/book/search/:title', function(req, res){
 
 
 router.get('/brodin_data.json', function(req, res){
-	res.json({});
+	res.json(brodin_data);
 });
 
 function allowMultiple(req, res, results){

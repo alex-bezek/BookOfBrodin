@@ -1,5 +1,42 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	h1 The Book Of Brodin
+	p Welcome to The Book Of Brodin
+
+	h2 Call the API's
+	#apiButtons
+		button#randomQuote(type=button class="btn btn-primary") Get Random Quote
+		button#randomDeity(type=button class="btn btn-primary") Get Random Deity
+		button#randomBook(type=button class="btn btn-primary") Get Random Book
+		br
+		button#searchQuote(type=button class="btn btn-primary searchApi") Search Quotes
+		button#searchDeity(type=button class="btn btn-primary searchApi") Search Dieties
+		button#searchBook(type=button class="btn btn-primary searchApi") Search Books
+		br
+		button#rawData(type=button class="btn btn-primary") Get Source Book
+
+	h3 Query String Params and Search variables
+	label(for='searchText') Search text will be applied on the 3 different search api calls
+	br
+	input#searchText(type=text placeholder='search text')
+	br
+	br
+	label(for='bookSearch') Only used for Quotes to search for a quote within a certain book
+	br
+	input#bookSearch(type='text' placeholder='book title')
+	br
+	br
+	label(for='maxLength') Max length is only applie to random and search Quotes. 
+	br
+	input#maxLength(type='number')
+	br
+	br
+	label(for='allowMultiples') Allow multiples is applied to searchs allowing the user to get more than 1 result
+	br
+	input#allowMultiples(type='checkbox')
+
+
+
+	h2 Results
+	pre#results Click a button to get some results
