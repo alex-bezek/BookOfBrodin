@@ -3,6 +3,10 @@ Quotes from the book of brodin
 
 http://bookofbrodin.wikia.com/wiki/Book_of_Brodin_Wiki
 
+Docker Repo
+
+https://hub.docker.com/r/alexbezek/bookofbrodin/
+
 ### Available API's
 There are the available api's that are currently implemented. Searching is case insensitive. Below are all api's and further down are more details around each one. 
 ```
