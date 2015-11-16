@@ -73,7 +73,11 @@ Vagrant.configure(2) do |config|
     cd vagrant/
     #sudo npm install --no-bin-links
 
-    npm start
+    yum -y install docker.io
+    service docker start
+    chkconfig docker on
+    usermod -aG docker vagrant
+    #npm start
 
   CMD
 
