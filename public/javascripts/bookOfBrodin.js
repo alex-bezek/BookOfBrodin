@@ -1,7 +1,5 @@
 (function(){
 
-	var BASE_ENDPOINT = 'http://localhost:3000';
-
 	var RANDOM_PASSAGE_URL  = '/api/passage',
 		RANDOM_DEITY_URL    = '/api/deity',
 		RANDOM_BOOK_URL     = '/api/book',
@@ -11,13 +9,13 @@
 		RAW_BOOK_URL        = '/api/brodin_data.json';
 
 	var idToURL = {
-		'randomQuote' : BASE_ENDPOINT + RANDOM_PASSAGE_URL,
-		'randomDeity' : BASE_ENDPOINT + RANDOM_DEITY_URL,
-		'randomBook'  : BASE_ENDPOINT + RANDOM_BOOK_URL,
-		'searchQuote' : BASE_ENDPOINT + SEARCH_PASSAGE_URL,
-		'searchDeity' : BASE_ENDPOINT + SEARCH_DEITY_URL,
-		'searchBook'  : BASE_ENDPOINT + SEARCH_BOOK_URL,
-		'rawData'  	  : BASE_ENDPOINT + RAW_BOOK_URL
+		'randomQuote' : RANDOM_PASSAGE_URL,
+		'randomDeity' : RANDOM_DEITY_URL,
+		'randomBook'  : RANDOM_BOOK_URL,
+		'searchQuote' : SEARCH_PASSAGE_URL,
+		'searchDeity' : SEARCH_DEITY_URL,
+		'searchBook'  : SEARCH_BOOK_URL,
+		'rawData'  	  : RAW_BOOK_URL
 	};
 
 	var pageContent = {
